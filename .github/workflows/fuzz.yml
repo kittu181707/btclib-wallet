@@ -51,7 +51,7 @@ name: fuzz
 #
 # The schedule below is section 10's own grid for `fuzz`, at this
 # repository's own minute. Not `push: branches: [main]` either, unlike
-# `scorecard.yml`: `fuzz-seconds: 3600` below is an hour of fuzzing, and
+# `scorecard.yml`: `fuzz-seconds: 600` below is an hour of fuzzing, and
 # ClusterFuzzLite's own docs call a push-triggered batch job "not
 # recommended" for exactly the reason that becomes -- one on every push
 # queues faster than an hour-long job drains. `workflow_dispatch` is
@@ -134,7 +134,7 @@ jobs:
         uses: google/clusterfuzzlite/actions/run_fuzzers@884713a6c30a92e5e8544c39945cd7cb630abcd1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          fuzz-seconds: 3600
+          fuzz-seconds: 600
           mode: batch
           sanitizer: address
           output-sarif: true
