@@ -93,6 +93,12 @@ be named there (issue btclib-org/.github#1596).
 A `###` heading under a release older than the newest, absent at the merge
 base with `origin/main`, is refused (issue btclib-org/.github#1614).
 
+### SIGHASH_SINGLE with no output at its input's index is never signed or sent
+
+It commits to no output, and Bitcoin Core's signer does not make it either
+(bitcoin/bitcoin#35984). `sign`, `request_signatures` and `HwiSigner.sign_psbt`
+refuse it, whatever is allowed (closes #258) (closes #263).
+
 ## v2026.10.4
 
 ### `RELEASING.md`'s griffe step searches `src`
