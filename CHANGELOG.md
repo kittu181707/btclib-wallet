@@ -93,6 +93,12 @@ be named there (issue btclib-org/.github#1596).
 A `###` heading under a release older than the newest, absent at the merge
 base with `origin/main`, is refused (issue btclib-org/.github#1614).
 
+### Silent payment addresses use `sprt` on regtest
+
+A regtest address has the hrp `sprt`, as in Bitcoin Core, and `keys_from_address`
+reads it with the network type `"test"`. Earlier releases give regtest `tsp`,
+which Core's regtest refuses. Testnet, testnet4 and signet keep `tsp` (closes #254).
+
 ## v2026.10.4
 
 ### `RELEASING.md`'s griffe step searches `src`

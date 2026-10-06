@@ -47,6 +47,11 @@ before upgrading, rather than a digit.
   A script that downloads it by name, or passes it to
   `gh attestation verify --bundle`, uses the new name.
 
+- **A regtest silent payment address starts with `sprt1`**, as Bitcoin Core's
+  regtest requires, where earlier releases give `tsp1`. `keys_from_address`
+  reads both, with the network type `"test"`. A regtest address stored or
+  compared as a `tsp1` string is made again.
+
 ## v2026.10.4
 
 - **Signing refuses a sig_hash type other than SIGHASH_ALL or
