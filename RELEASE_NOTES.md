@@ -47,6 +47,14 @@ before upgrading, rather than a digit.
   A script that downloads it by name, or passes it to
   `gh attestation verify --bundle`, uses the new name.
 
+- **`Bolt11Invoice.from_invoice` refuses malformed or repeated fields.** A `p`,
+  `s`, `h` or `n` of the wrong length, a second `p`, `s`, `d`, `h` or `n`, an
+  `x`, `c` or `9` starting with a zero word, and an amount with a leading zero
+  raise `BTClibValueError`, where earlier releases read the first well-formed
+  field, or read the amount without its leading zeros. This includes an invoice
+  that an earlier `sign` wrote with `expiry=0` or `min_final_cltv_expiry=0`:
+  sign it again.
+
 ## v2026.10.4
 
 - **Signing refuses a sig_hash type other than SIGHASH_ALL or

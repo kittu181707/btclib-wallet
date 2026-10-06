@@ -93,6 +93,17 @@ be named there (issue btclib-org/.github#1596).
 A `###` heading under a release older than the newest, absent at the merge
 base with `origin/main`, is refused (issue btclib-org/.github#1614).
 
+### `Bolt11Invoice` refuses malformed or repeated fields
+
+`from_invoice` refuses a wrong-length `p`, `s`, `h` or `n`, a second `p`, `s`,
+`d`, `h` or `n`, an `x`, `c` or `9` starting with a zero word, and an amount
+with a leading zero (closes #260).
+
+### `Bolt11Invoice.sign` writes a zero `x` or `c` as an empty field
+
+`sign` writes a zero `expiry` or `min_final_cltv_expiry` as an empty field
+(issue #260).
+
 ## v2026.10.4
 
 ### `RELEASING.md`'s griffe step searches `src`
