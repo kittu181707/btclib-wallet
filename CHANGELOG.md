@@ -93,6 +93,12 @@ be named there (issue btclib-org/.github#1596).
 A `###` heading under a release older than the newest, absent at the merge
 base with `origin/main`, is refused (issue btclib-org/.github#1614).
 
+### `parse` accepts a `pkh()` leaf under `tr()`
+
+`tr(KEY,pkh(KEY))` parses to the miniscript leaf `c:pk_h(KEY)`, as BIP386 lists
+it and Bitcoin Core reads it. BIP386's vectors and Core's parse-error cases
+are tested (closes #259) (closes #253) (closes #266).
+
 ## v2026.10.4
 
 ### `RELEASING.md`'s griffe step searches `src`
