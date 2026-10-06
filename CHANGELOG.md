@@ -93,6 +93,12 @@ be named there (issue btclib-org/.github#1596).
 A `###` heading under a release older than the newest, absent at the merge
 base with `origin/main`, is refused (issue btclib-org/.github#1614).
 
+### `fuzz` fails on a crash it cannot reproduce
+
+The run step passes `language: python`, which gives a crash 120 s to
+reproduce, not 30 s. It also passes `report-unreproducible-crashes: true`,
+so a crash that still does not reproduce fails the run (closes #249).
+
 ## v2026.10.4
 
 ### `RELEASING.md`'s griffe step searches `src`

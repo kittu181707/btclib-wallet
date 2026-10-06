@@ -133,6 +133,13 @@ jobs:
         # v1
         uses: google/clusterfuzzlite/actions/run_fuzzers@884713a6c30a92e5e8544c39945cd7cb630abcd1
         with:
+          # `language` defaults to `c++`, which gives a crash 30 s to reproduce;
+          # `python` gives it 120 s, and the frozen binary needs about 50 s to
+          # reach the input (ISS 249)
+          language: python
+          # a crash that does not reproduce, in that time or at all, still fails
+          # the run
+          report-unreproducible-crashes: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           fuzz-seconds: 3600
           mode: batch
