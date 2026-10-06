@@ -47,6 +47,13 @@ before upgrading, rather than a digit.
   A script that downloads it by name, or passes it to
   `gh attestation verify --bundle`, uses the new name.
 
+- **A psbt keeps an explicit `sig_hash_type` of 0 through `serialize` and
+  `combine`.** `sign` refuses an ECDSA input asking for it after a round trip
+  through bytes too, where it signed SIGHASH_ALL. `HwiSigner.sign_psbt` and
+  `request_signatures` refuse SIGHASH_DEFAULT on an input not known to be
+  taproot, where a device signed SIGHASH_ALL.
+  To sign such a psbt, ask its creator for SIGHASH_ALL or remove the field.
+
 ## v2026.10.4
 
 - **Signing refuses a sig_hash type other than SIGHASH_ALL or

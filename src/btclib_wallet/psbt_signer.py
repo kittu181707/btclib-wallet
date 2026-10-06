@@ -505,6 +505,8 @@ def request_signatures(
     type the psbt asks for, and the check on its answer accepts that type.
     The allow-list is not passed to the signer, so one with its own, as
     `SoftwareSigner` and `HwiSigner` have, refuses even then.
+    SIGHASH_DEFAULT on an input not known to be taproot is refused whatever
+    allowed_sig_hash_types says: no ECDSA signature has that type.
     """
     accepted = _accepted_sig_hash_types(allowed_sig_hash_types)
     assert_type(psbt, Psbt, "request")

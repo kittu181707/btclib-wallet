@@ -209,6 +209,9 @@ checks against its own, before `hwi` runs (issue #243). A legacy
 SIGHASH_SINGLE input with no output at its index is never signed, and a
 returned ECDSA signature of a type other than SIGHASH_ALL is refused
 where the input names none (GHSA-qq38-77mp-j6wr).
+An input asking for SIGHASH_DEFAULT that is not known to be taproot is refused
+by `psbt.sign`, and `request_signatures` and `HwiSigner.sign_psbt` do not send
+it, since a device would sign SIGHASH_ALL.
 
 **The network.** `fetch/` is where a backend's own reply crosses in — a
 transaction, a block header, a fee estimate, a UTXO's existence.

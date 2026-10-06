@@ -684,6 +684,9 @@ class HwiSigner:
         runs. `request_signatures` does not pass its allow-list on, so a
         caller who accepts other types calls this method directly and holds
         the answer with `assert_signatures_only` before `combine`.
+        SIGHASH_DEFAULT on an input not known to be taproot is refused
+        whatever allowed_sig_hash_types says: no ECDSA signature has that
+        type.
         """
         accepted = _accepted_sig_hash_types(allowed_sig_hash_types)
         assert_type(psbt, Psbt, "psbt")
