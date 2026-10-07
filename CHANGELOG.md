@@ -93,6 +93,12 @@ be named there (issue btclib-org/.github#1596).
 A `###` heading under a release older than the newest, absent at the merge
 base with `origin/main`, is refused (issue btclib-org/.github#1614).
 
+### BIP38 names `hashlib.scrypt` where the interpreter lacks it
+
+Without `hashlib.scrypt`, `encrypt`, `decrypt`, `intermediate_code` and
+`new_key_pair` raise a `BTClibRuntimeError` naming it, not an `AttributeError`
+(closes #255).
+
 ## v2026.10.4
 
 ### `RELEASING.md`'s griffe step searches `src`
